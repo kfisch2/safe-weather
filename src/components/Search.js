@@ -1,23 +1,26 @@
 import { React, useState } from "react";
-const states = require("./states.json");
-const apiKey = "";
+import DayCard from "./DayCard";
 
+const states = require("./states.json");
+const apiKey = "1eb784753dd9691347d2b905eeeffc69";
 
 export default function Search() {
-  console.log(apiKey);
-  const [userCity, setUserCity] = useState("");
-  const [userState, setUserState] = useState("");
+  const [queryCalled, setQueryCalled] = useState(false);
+  const [weather, setWeather] = useState({})
 
-  const cityName = document.getElementById("cityName");
-  const stateName = document.getElementById("stateName");
+  const renderDayCard = (weatherData) => {
+    return <DayCard weatherData={weatherData}/>;
+  };
 
   const handleSubmit = async () => {
-    await getCoords(cityName.value, stateName.value);
+    const cityName = document.querySelector("#cityName").value;
+    const stateName = document.querySelector("#stateName").value;
+    getCoords(cityName, stateName);
   };
 
   const getCoords = async (city, state) => {
     const data = await fetch(
-      `http://api.openweathermap.org/geo/1.0/direct?q=${city},${state}&appid=${apiKey}`
+      `http://api.openweathermap.org/geo/1.0/direct?q=${city},${state},us&appid=${apiKey}`
     );
 
     const cityInfo = await data.json();
@@ -34,8 +37,9 @@ export default function Search() {
       `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`
     );
 
-    const res = await data.json();
-    console.log(res.weather[0]);
+    const weatherData = await data.json();
+    setQueryCalled(true);
+    setWeather(weatherData.weather[0]);    
   };
 
   return (
@@ -59,6 +63,7 @@ export default function Search() {
         </select>
         <button>Search</button>
       </form>
+      {queryCalled && renderDayCard(weather)}
     </>
   );
 }
