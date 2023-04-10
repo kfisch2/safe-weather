@@ -6,10 +6,12 @@ const apiKey = "1eb784753dd9691347d2b905eeeffc69";
 
 export default function Search() {
   const [queryCalled, setQueryCalled] = useState(false);
-  const [weather, setWeather] = useState({})
+  const [weather, setWeather] = useState({});
+  const [city, setCity] = useState({});
 
-  const renderDayCard = (weatherData) => {
-    return <DayCard weatherData={weatherData}/>;
+
+  const renderDayCard = (weatherData, cityInfo) => {
+    return <DayCard weatherData={weatherData} cityInfo={cityInfo} />;
   };
 
   const handleSubmit = async () => {
@@ -24,11 +26,11 @@ export default function Search() {
     );
 
     const cityInfo = await data.json();
-    console.log(cityInfo);
 
     const lat = cityInfo[0].lat;
     const lon = cityInfo[0].lon;
 
+    setCity(cityInfo);
     getWeather(lat, lon);
   };
 
@@ -39,13 +41,14 @@ export default function Search() {
 
     const weatherData = await data.json();
     setQueryCalled(true);
-    setWeather(weatherData.weather[0]);    
+    setWeather(weatherData.weather[0]);
   };
 
   return (
-    <>
+    <div className="homePage">
       <div>Get AQI and weather forecast for your city !</div>
       <form
+        className="weatherForm"
         onSubmit={(e) => {
           e.preventDefault();
           handleSubmit();
@@ -63,7 +66,9 @@ export default function Search() {
         </select>
         <button>Search</button>
       </form>
-      {queryCalled && renderDayCard(weather)}
-    </>
+      <div className="dayCardContainer">
+        {queryCalled && renderDayCard(weather, city)}
+      </div>
+    </div>
   );
 }

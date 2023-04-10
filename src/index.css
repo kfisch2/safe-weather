@@ -1,13 +1,55 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* background-image: url("https://images.pexels.com/photos/209831/pexels-photo-209831.jpeg?cs=srgb&dl=pexels-pixabay-209831.jpg&fm=jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: aliceblue; */
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.dayCardContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+
+.dayCard {
+  width: 100%;
+  background-size: cover;
+  background-repeat: none;
+  background-position: center;
+  border: 1px solid black;
+  /* justify-content: center;
+  align-items: center; */
+  padding: 10px;
+}
+
+.rain {
+  background-image: url("./images/rain.jpg");
+}
+
+.lightning {
+  background-image: url("./images/lightning.jpg");
+}
+
+.clouds {
+  background-image: url("./images/clouds.jpg");
+}
+
+.snow {
+  background-image: url("./images/snow.jpg");
+}
+
+.clear {
+  background-image: url('./images/sun.jpg');
 }

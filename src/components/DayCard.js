@@ -1,15 +1,24 @@
-import React from "react";
+import { React, useEffect, useState } from "react";
 import "../index.css";
 
-export default function DayCard({ weatherData }) {
+export default function DayCard({ weatherData, cityInfo }) {
+  const [mainWeather, setMainWeather] = useState("");
+
+  let city = cityInfo[0].name;
+  let state = cityInfo[0].state;
+  let main = weatherData.main.toLowerCase();
+
+  // hook prevents infinite loop in setting mainWeather state
+  useEffect(() => {
+    setMainWeather(main);
+  }, [main]);
+
   return (
-    <>
-      <h1>{weatherData.description}</h1>
-      <img
-        className="weatherIcon"
-        src={`https://openweathermap.org/img/wn/${weatherData.icon}@2x.png`}
-      ></img>
+    <div className={`dayCard ${mainWeather}`}>
+      <h1>
+        {city}, {state}
+      </h1>
       <div>{weatherData.main}</div>
-    </>
+    </div>
   );
 }
