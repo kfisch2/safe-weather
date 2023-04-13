@@ -16,11 +16,13 @@ code {
     monospace;
 }
 
-.dayCardContainer {
+.dayCardContainer,
+.forecastContainer {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   margin: 10px;
+  list-style: none;
 }
 
 .dayCard {
@@ -29,12 +31,24 @@ code {
   background-repeat: none;
   background-position: center;
   border: 1px solid black;
-  /* justify-content: center;
-  align-items: center; */
   padding: 10px;
 }
 
-.rain {
+.forecastCard {
+  width: 100%;
+  border: 1px solid black;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: none;
+  margin: 10px;
+}
+
+.forecastCard div {
+  margin: 20px;
+}
+
+/* .rain {
   background-image: url("./images/rain.jpg");
 }
 
@@ -51,5 +65,5 @@ code {
 }
 
 .clear {
-  background-image: url('./images/sun.jpg');
-}
+  background-image: url("./images/sun.jpg");
+} */
