@@ -4,6 +4,7 @@ import "../index.css";
 export default function DayCard({ weatherData, cityInfo }) {
   const [mainWeather, setMainWeather] = useState("");
 
+
   let city = cityInfo[0].name;
   let state = cityInfo[0].state;
   let main = weatherData.main.toLowerCase();
@@ -11,6 +12,7 @@ export default function DayCard({ weatherData, cityInfo }) {
   // hook prevents infinite loop in setting mainWeather state
   useEffect(() => {
     setMainWeather(main);
+    console.log(mainWeather)
   }, [main]);
 
   return (

@@ -2,8 +2,10 @@ import { React, useState } from "react";
 import DayCard from "./DayCard";
 import ForecastCard from "./ForecastCard";
 
+
+
 const states = require("./states.json");
-const apiKey = "1eb784753dd9691347d2b905eeeffc69";
+const apiKey = process.env.REACT_APP_API_KEY;
 
 export default function Search() {
   const [queryCalled, setQueryCalled] = useState(false);
@@ -92,7 +94,9 @@ export default function Search() {
         <button>Search</button>
       </form>
       <div className="dayCardContainer">
-        {queryCalled && renderDayCard(weather, city)}
+        <div></div>
+        <div>{queryCalled && renderDayCard(weather, city)}</div>
+        
       </div>
       <div className="forecastContainer">
         {queryCalled && renderForecastCard(forecast)}

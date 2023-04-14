@@ -5,6 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* background-color: rgba(25, 21, 92, 0.877); */
+  /* color: rgb(233, 229, 229); */
 }
 
 code {
@@ -12,12 +14,16 @@ code {
     monospace;
 }
 
+.homePage {
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
+}
 .dayCardContainer,
 .forecastContainer {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   margin: 10px;
+  /* width: 75%; */
 }
 
 .dayCard {
@@ -30,20 +36,17 @@ code {
 }
 
 .forecastCard {
-  width: 100%;
+  width: 10%;
   border: 1px solid black;
-  background-size: cover;
-  background-position: center;
-  background-repeat: none;
-  margin: 10px;
+  margin: 5px;
 }
 
 .forecastCard div {
-  margin: 20px;
+  margin: 5px;
 }
 
 .weatherIcon {
-  width: 100%;
+  width: 50%;
 }
 
 /* .rain {
