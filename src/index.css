@@ -5,10 +5,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* background-image: url("https://images.pexels.com/photos/209831/pexels-photo-209831.jpeg?cs=srgb&dl=pexels-pixabay-209831.jpg&fm=jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  color: aliceblue; */
 }
 
 code {
@@ -22,7 +18,6 @@ code {
   justify-content: space-between;
   align-items: center;
   margin: 10px;
-  list-style: none;
 }
 
 .dayCard {
@@ -37,7 +32,6 @@ code {
 .forecastCard {
   width: 100%;
   border: 1px solid black;
-  justify-content: center;
   background-size: cover;
   background-position: center;
   background-repeat: none;
@@ -48,8 +42,12 @@ code {
   margin: 20px;
 }
 
+.weatherIcon {
+  width: 100%;
+}
+
 /* .rain {
-  background-image: url("./images/rain.jpg");
+  background-image: url("./images/rainy.gif");
 }
 
 .lightning {
@@ -65,5 +63,5 @@ code {
 }
 
 .clear {
-  background-image: url("./images/sun.jpg");
+  background-image: url("./images/sun.gif");
 } */
