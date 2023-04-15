@@ -2,8 +2,6 @@ import { React, useState } from "react";
 import DayCard from "./DayCard";
 import ForecastCard from "./ForecastCard";
 
-
-
 const states = require("./states.json");
 const apiKey = process.env.REACT_APP_API_KEY;
 
@@ -49,57 +47,66 @@ export default function Search() {
     );
 
     const weatherData = await data.json();
+
+    console.log(weatherData)
     setQueryCalled(true);
-    setWeather(weatherData.weather[0]);
+    setWeather(weatherData);
   };
 
   // 5 day forecast
   const getForecast = async (lat, lon) => {
-    const data = await fetch(
-      `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`
-    );
+    // const data = await fetch(
+    //   `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`
+    // );
+
+    const data = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude={part}&appid=${apiKey}`);
 
     const forecast = await data.json();
-  
-
-    const day1 = forecast.list[4];
-    const day2 = forecast.list[12];
-    const day3 = forecast.list[20];
-    const day4 = forecast.list[28];
-    const day5 = forecast.list[36];
+    console.log(forecast);
+    const day1 = forecast.daily[1]
+    const day2 = forecast.daily[2]
+    const day3 = forecast.daily[3]
+    const day4 = forecast.daily[4];
+    const day5 = forecast.daily[5];
     const forecastDays = [day1, day2, day3, day4, day5];
     setForecast(forecastDays);
   };
 
   return (
     <div className="homePage">
-      <div>Get AQI and weather forecast for your city !</div>
-      <form
-        className="weatherForm"
-        onSubmit={(e) => {
-          e.preventDefault(); 
-          handleSubmit();
-        }}
-      >
-        {" "}
-        <input id="cityName" placeholder="city name"></input>
-        <label className="dropbtn">Select state</label>
-        <select id="stateName" className="dropdown-content" defaultValue={null}>
-          {states.map((state, i) => (
-            <option key={i} value={state}>
-              {state}
-            </option>
-          ))}
-        </select>
-        <button>Search</button>
-      </form>
       <div className="dayCardContainer">
-        <div></div>
-        <div>{queryCalled && renderDayCard(weather, city)}</div>
-        
+        {" "}
+        <form
+          className="weatherForm"
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleSubmit();
+          }}
+        >
+          {" "}
+          <input id="cityName" placeholder="City"></input>{" "}
+          <label className="dropbtn">State</label>
+          <select
+            id="stateName"
+            className="dropdown-content"
+            defaultValue={null}
+          >
+            {states.map((state, i) => (
+              <option key={i} value={state}>
+                {state}
+              </option>
+            ))}
+          </select>
+          <button>Search</button>
+        </form>
+        <div className="dayCard">
+          {queryCalled && renderDayCard(weather, city)}
+        </div>
       </div>
+
       <div className="forecastContainer">
-        {queryCalled && renderForecastCard(forecast)}
+        <h3>5-day forecast</h3>
+        <div className="forecastCards">{queryCalled && renderForecastCard(forecast)}</div>
       </div>
     </div>
   );
